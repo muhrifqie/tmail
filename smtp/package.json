@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "start": "haraka -c .",
-    "dev": "node dev-forward-smtp.mjs"
+    "dev": "node dev-forward-smtp.mjs",
+    "prod": "node prod-smtp.mjs"
   },
   "dependencies": {
     "Haraka": "^3.0.5",
