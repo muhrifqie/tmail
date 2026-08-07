@@ -1,0 +1,47 @@
+services:
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+
+  api:
+    build: ./api
+    restart: unless-stopped
+    ports:
+      - "3100:3100"
+    environment:
+      NODE_ENV: production
+      INGEST_KEY: ${INGEST_KEY:-dev-ingest-key-change-me}
+      INBOX_TTL_SEC: ${INBOX_TTL_SEC:-3600}
+      SQLITE_PATH: /data/tmail.sqlite
+      REDIS_URL: redis://redis:6379
+      API_PORT: 3100
+      CORS_ORIGIN: ${CORS_ORIGIN:-http://127.0.0.1:5173}
+      DOMAINS_PATH: /app/domains.json
+    volumes:
+      - api-data:/data
+      - ./domains.json:/app/domains.json:ro
+    depends_on:
+      - redis
+
+  web:
+    build: ./web
+    restart: unless-stopped
+    ports:
+      - "5173:80"
+    depends_on:
+      - api
+
+  # Prod mail path — needs host net / port 25 + rDNS. Optional on Windows.
+  # smtp:
+  #   build: ./smtp
+  #   ports:
+  #     - "25:25"
+  #   environment:
+  #     INGEST_KEY: ${INGEST_KEY:-dev-ingest-key-change-me}
+  #   depends_on:
+  #     - api
+
+volumes:
+  api-data:

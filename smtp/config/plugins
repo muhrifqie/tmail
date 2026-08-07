@@ -1,0 +1,7 @@
+# TMail Haraka — enable core + forward plugin
+smtpd.js
+tls.js
+# auth is not needed for inbound catch-all
+mailbody.js
+# custom
+tmail_forward

@@ -1,0 +1,7 @@
+{
+  "domains": [
+    { "name": "tmail.local", "active": true },
+    { "name": "mail.test", "active": true },
+    { "name": "disabled.example", "active": false }
+  ]
+}

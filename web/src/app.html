@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta name="theme-color" content="#1a1915" />
+    <script>
+      try {
+        var t = localStorage.getItem('tmail_theme');
+        if (t !== 'dark' && t !== 'light') t = 'dark';
+        document.documentElement.dataset.theme = t;
+        var m = document.querySelector('meta[name="theme-color"]');
+        if (m) m.setAttribute('content', t === 'dark' ? '#1a1915' : '#f5f4ed');
+      } catch (e) {}
+    </script>
+    <title>TMail</title>
+    %sveltekit.head%
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents">%sveltekit.body%</div>
+  </body>
+</html>

@@ -1,0 +1,11 @@
+node_modules/
+dist/
+build/
+.svelte-kit/
+data/
+*.sqlite
+*.sqlite-*
+.env
+.DS_Store
+.output/
+coverage/
